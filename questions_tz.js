@@ -185,7 +185,7 @@ const externalQuestions = [
         "id": 2010,
         "kategorie": "Linienarten",
         "frage": "Wie weit ragen Mittellinien über die Körperkante hinaus?",
-        "optionen": ["Gar nicht", "Etwa 2 bis 5 mm", "Bis zum Blattrand", "10 mm"],
+        "optionen": ["Gar nicht", "Etwa 3 mm", "Bis zum Blattrand", "10 mm"],
         "antwort": 1,
         "erklaerung": "Der Überstand sollte zwischen 2 und 5 mm liegen."
     },
@@ -310,7 +310,7 @@ const externalQuestions = [
     {
         "id": 4003,
         "kategorie": "Bemaßung",
-        "frage": "Wie groß sollte der Abstand der ersten Maßlinie zur Körperkante mindestens sein?",
+        "frage": "Wie groß sollte der Abstand der ersten Maßlinie zur Körperkante sein?",
         "optionen": ["5 mm", "10 mm", "20 mm", "2 mm"],
         "antwort": 1,
         "erklaerung": "Die erste Maßlinie sollte einen Abstand von 10 mm zur Körperkante haben."
@@ -329,7 +329,7 @@ const externalQuestions = [
         "id": 4007,
         "kategorie": "Bemaßung",
         "frage": "Welches Symbol kennzeichnet einen Durchmesser?",
-        "optionen": ["R", "□", "Ø", "△"],
+        "optionen": ["○", "□", "Ø", "△"],
         "antwort": 2,
         "erklaerung": "Das Durchmesserzeichen Ø wird vor die Maßzahl gesetzt."
     },
@@ -337,7 +337,7 @@ const externalQuestions = [
         "id": 4008,
         "kategorie": "Bemaßung",
         "frage": "Wie werden Radien in einer Zeichnung bemaßt bzw. gekennzeichnet?",
-        "optionen": ["Ø", "r", "R", "Gar nicht"],
+        "optionen": ["Ra", "r", "R", "Gar nicht"],
         "antwort": 2,
         "erklaerung": "Radien werden mit dem vorangestellten Buchstaben R gekennzeichnet."
     },
@@ -360,7 +360,7 @@ const externalQuestions = [
     {
         "id": 4011,
         "kategorie": "Bemaßung",
-        "frage": "Wie Fasenbemaßung ist korrekt?",
+        "frage": "Welche Fasenbemaßung ist korrekt angegeben?",
         "optionen": ["45°x3", "3x45°", "2x30°", "keine davon"],
         "antwort": 1,
         "erklaerung": "45-Grad-Fasen dürfen als Kombinationsmaß (Breite x Winkel) also zb. 3x45° geschrieben werden."
@@ -369,7 +369,7 @@ const externalQuestions = [
         "id": 4012,
         "kategorie": "Bemaßung",
         "frage": "Welches Symbol kennzeichnet eine Schlüsselweite?",
-        "optionen": ["ø", "SW vor der Zahl", "Dreieck", "Sechskant"],
+        "optionen": ["ø", "SW (vor der Zahl)", "□", "⬡"],
         "antwort": 1,
         "erklaerung": "SW kennzeichnet den Abstand paralleler Flächen für Werkzeugangriffe. Z. B. SW 13"
     },
@@ -408,14 +408,7 @@ const externalQuestions = [
         "erklaerung": "Die erste Maßlinie sollte etwa 10 mm Abstand zur Körperkante haben, weitere zueinander etwa 7-8 mm."
     },
 
-    {
-        "id": 4026,
-        "kategorie": "Bemaßung",
-        "frage": "Welches Symbol steht für Durchmesser?",
-        "optionen": ["D", "Ø", "R", "d"],
-        "antwort": 1,
-        "erklaerung": "Das Ø-Symbol wird vor die Maßzahl verwendet, wenn die Kreisform nicht eindeutig erkennbar ist."
-    },
+
 
 
 

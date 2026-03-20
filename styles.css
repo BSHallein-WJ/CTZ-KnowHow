@@ -512,10 +512,11 @@ body {
     justify-content: center;
     gap: 15px;
     z-index: 1000;
-    background: linear-gradient(to top, var(--bg-darker) 90%, transparent);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 1px solid var(--glass-border);
+    pointer-events: none; /* Let clicks pass through to content behind, but buttons below will re-enable them */
+}
+
+.learning-actions button {
+    pointer-events: auto; /* Re-enable for the actual buttons */
 }
 
 .learning-actions .btn-primary {

@@ -148,7 +148,7 @@ class TechZeichnerApp {
     startExam() {
         this.isExamMode = true;
         this.currentQuizCategory = 'all';
-        this.navigateTo('quiz');
+        this.navigateTo('quiz-session');
     }
 
     startLearning(category) {
@@ -159,7 +159,7 @@ class TechZeichnerApp {
     initLearning() {
         this.quizState.currentIndex = 0;
         this.isLearningMode = true;
-        
+
         // Reset global buttons
         const showBtn = document.getElementById('btn-show-solution');
         const nextBtn = document.getElementById('btn-next-learning');
@@ -171,7 +171,7 @@ class TechZeichnerApp {
         if (this.currentQuizCategory && this.currentQuizCategory !== 'all') {
             filteredQuestions = filteredQuestions.filter(q => q.category === this.currentQuizCategory);
         }
-        
+
         // Fallback if no questions found (failsafe)
         if (filteredQuestions.length === 0) {
             filteredQuestions = [...this.allQuestions];
@@ -202,7 +202,7 @@ class TechZeichnerApp {
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 20);
 
-            this.startExamTimer(600); // 10 minutes (600 seconds)
+            this.startExamTimer(480); // 8 minutes (480 seconds)
         } else {
             if (quizTitle) quizTitle.textContent = "Wissens-Quiz";
             if (timerContainer) timerContainer.style.display = 'none';
@@ -222,11 +222,18 @@ class TechZeichnerApp {
         let timeLeft = seconds;
         const timerEl = document.getElementById('exam-timer');
 
+        // Immediate update to avoid showing old value
+        const updateDisplay = (time) => {
+            const mins = Math.floor(time / 60);
+            const secs = time % 60;
+            if (timerEl) timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        };
+
+        updateDisplay(timeLeft);
+
         this.examTimer = setInterval(() => {
             timeLeft--;
-            const mins = Math.floor(timeLeft / 60);
-            const secs = timeLeft % 60;
-            if (timerEl) timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            updateDisplay(timeLeft);
 
             if (timeLeft <= 0) {
                 this.finishExam();
