@@ -1,0 +1,21 @@
+{
+  "name": "TechZeichner Pro",
+  "short_name": "TZ Pro",
+  "description": "Lern-App für Technische Zeichner mit Quiz, Karteikarten und Nachschlagewerk.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

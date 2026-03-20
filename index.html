@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <title>TechZeichner Pro - Lern-App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="header-content">
+                <h1>TechZeichner <span class="accent-text">Pro</span></h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content" class="content-area">
+            <!-- Content will be rendered here via JS -->
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="glass-nav">
+            <button class="nav-btn active" data-target="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-target="quiz">
+                <i class="fas fa-question-circle"></i>
+                <span>Quiz</span>
+            </button>
+            <button class="nav-btn" data-target="reference">
+                <i class="fas fa-book-open"></i>
+                <span>Wissen</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- View Templates -->
+    <template id="tpl-home">
+        <div class="view home-view">
+            <div class="welcome-card glass-card">
+                <h2>Hallo, Tech-Held! 🛠️</h2>
+                <p>Bereit dein Wissen über das Technische Zeichnen zu vertiefen?</p>
+                
+                <div class="progress-section">
+                    <div class="progress-info">
+                        <span>Dein Gesamtfortschritt</span>
+                        <span id="global-progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="global-progress-fill" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card glass-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Beherrscht</h3>
+                    <p id="total-solved">0 Fragen</p>
+                </div>
+                <div class="stat-card glass-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Zuletzt aktiv</h3>
+                    <p id="last-active">Heute</p>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h3>Themen wählen</h3>
+            </div>
+            
+            <div class="modules-grid" id="theme-grid">
+                <div class="module-card glass-card" onclick="app.startQuiz('Blattformate')">
+                    <div class="module-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Blattformate</h3>
+                    <p>Normgrößen & Layout</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('Linienarten')">
+                    <div class="module-icon"><i class="fas fa-pen-nib"></i></div>
+                    <h3>Linienarten</h3>
+                    <p>Normen & Verwendung</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('Maßstäbe')">
+                    <div class="module-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>Maßstäbe</h3>
+                    <p>Verkleinerung & Vergrößerung</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('Bemaßung')">
+                    <div class="module-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                    <h3>Bemaßung</h3>
+                    <p>Regeln & Symbole</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('Projektionen')">
+                    <div class="module-icon"><i class="fas fa-cube"></i></div>
+                    <h3>Projektionen</h3>
+                    <p>Ansichten & Perspektiven</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('all')">
+                    <div class="module-icon"><i class="fas fa-random"></i></div>
+                    <h3>Alle Themen</h3>
+                    <p>Gemischt üben</p>
+                </div>
+                <!-- Neuer Prüfungsmodus -->
+                <div class="module-card glass-card exam-card" onclick="app.startExam()">
+                    <div class="module-icon"><i class="fas fa-stopwatch"></i></div>
+                    <h3>Prüfungsmodus</h3>
+                    <p>20 Fragen, 10 Min, Benotung</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-quiz">
+        <div class="view quiz-view" id="quiz-view-container">
+            <div class="quiz-header">
+                <h2 id="quiz-title">Wissens-Quiz</h2>
+                <div class="score-badge">
+                    <i class="fas fa-star" id="score-icon"></i>
+                    <span id="quiz-score">0</span>
+                </div>
+            </div>
+            
+            <div class="quiz-progress-bar">
+                <div id="quiz-progress-fill" class="quiz-progress-bar-fill"></div>
+            </div>
+
+            <div id="quiz-container" class="glass-card">
+                <!-- Question content injected here -->
+            </div>
+            <!-- Timer für Prüfung -->
+            <div id="exam-timer-container" class="glass-card timer-card" style="display: none;">
+                <i class="fas fa-clock"></i>
+                <span id="exam-timer">10:00</span>
+            </div>
+        </div>
+    </template>
+
+
+
+    <template id="tpl-reference">
+        <div class="view reference-view">
+            <div class="ref-sticky-header">
+                <h2>Nachschlagewerk</h2>
+                <div class="search-box glass-card">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="ref-search" placeholder="Suche nach Normen, Linien..." oninput="app.filterReference()">
+                </div>
+            </div>
+            <div id="reference-list" class="reference-container">
+                <!-- Content injected here -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Data and App Scripts -->
+    <script src="data.js"></script>
+    <script src="questions_tz.js"></script>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js');
+            });
+        }
+    </script>
+</body>
+</html>
