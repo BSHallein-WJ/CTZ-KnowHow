@@ -3,21 +3,22 @@ class TechZeichnerApp {
         this.mainContent = document.getElementById('main-content');
         this.navBtns = document.querySelectorAll('.nav-btn');
         this.currentView = 'home';
-        
+
         // Persistent State
         this.stats = this.loadStats();
-        
+
         // Session State
         this.quizState = {
             currentIndex: 0,
             score: 0,
             questions: []
         };
-        
+
+        this.allQuestions = [];
         this.isExamMode = false;
+        this.isLearningMode = false;
         this.currentQuizCategory = 'all';
         this.examTimer = null;
-
         this.init();
     }
 
@@ -30,32 +31,27 @@ class TechZeichnerApp {
             });
         });
 
-        // Load External Questions if available
-        this.loadExternalQuestions();
+        // Load Questions
+        this.loadQuestions();
 
         // Load Initial View
         this.renderView('home');
     }
 
-    loadExternalQuestions() {
+    loadQuestions() {
         if (typeof externalQuestions !== 'undefined') {
-            const mapped = externalQuestions.map(q => ({
+            this.allQuestions = externalQuestions.map(q => ({
                 id: `ext-${q.id}`,
                 category: q.kategorie,
                 question: q.frage,
                 options: q.optionen,
                 correctIndex: q.antwort,
-                explanation: `Kategorie: ${q.kategorie}. Diese Frage stammt aus der erweiterten Sammlung.`
+                explanation: q.explanation || q.erklaerung || `Viel Erfolg beim nächsten Versuch!`
             }));
-            
-            // Avoid duplicates if init is called multiple times
-            const existingIds = appData.quizQuestions.map(q => q.id);
-            mapped.forEach(q => {
-                if (!existingIds.includes(q.id)) {
-                    appData.quizQuestions.push(q);
-                }
-            });
-            console.log(`Loaded ${mapped.length} external questions.`);
+            console.log(`Loaded ${this.allQuestions.length} questions.`);
+        } else {
+            this.allQuestions = [];
+            console.error("No questions found in questions_tz.js!");
         }
     }
 
@@ -70,36 +66,19 @@ class TechZeichnerApp {
             console.error("Error parsing stats", e);
         }
         return {
-            correctQuestions: [], // IDs der richtig beantworteten Fragen
-            totalSolved: 0,
-            lastPlayed: new Date().toISOString()
+            correctQuestions: [] // IDs der richtig beantworteten Fragen
         };
     }
 
     saveStats() {
-        this.stats.lastPlayed = new Date().toISOString();
-        this.stats.totalSolved = this.stats.correctQuestions.length;
         localStorage.setItem('tz_stats', JSON.stringify(this.stats));
     }
 
-    updateGlobalProgress() {
-        const progressFill = document.getElementById('global-progress-fill');
-        const progressPercentText = document.getElementById('global-progress-percent');
-        
-        if (!progressFill || !progressPercentText) return;
-
-        const totalQuestions = appData.quizQuestions.length;
-        const solvedUnique = this.stats.correctQuestions.length;
-        const percentage = totalQuestions > 0 ? Math.round((solvedUnique / totalQuestions) * 100) : 0;
-
-        progressFill.style.width = `${percentage}%`;
-        progressPercentText.textContent = `${percentage}%`;
-    }
 
     navigateTo(viewId) {
         if (this.currentView === viewId) return;
         this.currentView = viewId;
-        
+
         this.navBtns.forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.target === viewId) {
@@ -109,8 +88,25 @@ class TechZeichnerApp {
 
         this.renderView(viewId);
     }
-
     renderView(viewId, callback = null) {
+        // Log current view for debugging
+        console.log("Rendering view:", viewId);
+
+        // Robust toggle for global learning actions
+        const learningActions = document.getElementById('global-learning-actions');
+        if (learningActions) {
+            if (viewId === 'learning-session') {
+                learningActions.style.display = 'flex';
+                // Reinforce button states
+                const showBtn = document.getElementById('btn-show-solution');
+                const nextBtn = document.getElementById('btn-next-learning');
+                if (showBtn) showBtn.style.display = 'flex';
+                if (nextBtn) nextBtn.style.display = 'none';
+            } else {
+                learningActions.style.display = 'none';
+            }
+        }
+
         const template = document.getElementById(`tpl-${viewId}`);
         if (!template) return;
 
@@ -123,19 +119,30 @@ class TechZeichnerApp {
             this.mainContent.scrollTo(0, 0);
         }
 
-        if (viewId === 'home') this.updateGlobalProgress();
-        if (viewId === 'quiz') {
+        if (viewId === 'home') {
+            // No action needed for home currently
+        }
+        if (viewId === 'quiz-home') {
+            // No action needed currently
+        }
+        if (viewId === 'quiz-session') {
             if (callback) callback();
             else this.initQuiz();
         }
-        if (viewId === 'reference') this.initReference();
+        if (viewId === 'learning-home') {
+            // No action needed currently
+        }
+        if (viewId === 'learning-session') {
+            this.initLearning();
+        }
     }
+
 
     // --- Quiz Logic ---
     startQuiz(category) {
         this.currentQuizCategory = category;
         this.isExamMode = false;
-        this.navigateTo('quiz');
+        this.navigateTo('quiz-session');
     }
 
     startExam() {
@@ -144,10 +151,41 @@ class TechZeichnerApp {
         this.navigateTo('quiz');
     }
 
+    startLearning(category) {
+        this.currentQuizCategory = category;
+        this.isExamMode = false;
+        this.navigateTo('learning-session');
+    }
+    initLearning() {
+        this.quizState.currentIndex = 0;
+        this.isLearningMode = true;
+        
+        // Reset global buttons
+        const showBtn = document.getElementById('btn-show-solution');
+        const nextBtn = document.getElementById('btn-next-learning');
+        if (showBtn) showBtn.style.display = 'flex';
+        if (nextBtn) nextBtn.style.display = 'none';
+
+        // Filter questions based on category
+        let filteredQuestions = [...this.allQuestions];
+        if (this.currentQuizCategory && this.currentQuizCategory !== 'all') {
+            filteredQuestions = filteredQuestions.filter(q => q.category === this.currentQuizCategory);
+        }
+        
+        // Fallback if no questions found (failsafe)
+        if (filteredQuestions.length === 0) {
+            filteredQuestions = [...this.allQuestions];
+        }
+
+        this.quizState.questions = filteredQuestions.sort(() => Math.random() - 0.5);
+        this.renderQuestion();
+    }
+
     initQuiz() {
         this.quizState.currentIndex = 0;
         this.quizState.score = 0;
         this.quizState.incorrectAnswers = []; // Track errors
+        this.isLearningMode = false;
         this.stopExamTimer();
 
         const quizTitle = document.getElementById('quiz-title');
@@ -158,32 +196,32 @@ class TechZeichnerApp {
             if (quizTitle) quizTitle.textContent = "Prüfungssimulation";
             if (timerContainer) timerContainer.style.display = 'flex';
             if (scoreIcon) scoreIcon.className = 'fas fa-stopwatch';
-            
+
             // Pick 20 random questions from all
-            this.quizState.questions = [...appData.quizQuestions]
+            this.quizState.questions = [...this.allQuestions]
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 20);
-            
+
             this.startExamTimer(600); // 10 minutes (600 seconds)
         } else {
             if (quizTitle) quizTitle.textContent = "Wissens-Quiz";
             if (timerContainer) timerContainer.style.display = 'none';
             if (scoreIcon) scoreIcon.className = 'fas fa-star';
 
-            let filteredQuestions = [...appData.quizQuestions];
+            let filteredQuestions = [...this.allQuestions];
             if (this.currentQuizCategory && this.currentQuizCategory !== 'all') {
                 filteredQuestions = filteredQuestions.filter(q => q.category === this.currentQuizCategory);
             }
             this.quizState.questions = filteredQuestions.sort(() => Math.random() - 0.5);
         }
-        
+
         this.renderQuestion();
     }
 
     startExamTimer(seconds) {
         let timeLeft = seconds;
         const timerEl = document.getElementById('exam-timer');
-        
+
         this.examTimer = setInterval(() => {
             timeLeft--;
             const mins = Math.floor(timeLeft / 60);
@@ -201,10 +239,11 @@ class TechZeichnerApp {
     }
 
     renderQuestion() {
-        const container = document.getElementById('quiz-container');
+        const container = document.getElementById(this.isLearningMode ? 'learning-container' : 'quiz-container');
         const scoreBadge = document.getElementById('quiz-score');
-        const progressFill = document.getElementById('quiz-progress-fill');
-        
+        const progressFill = document.getElementById(this.isLearningMode ? 'learning-progress-fill' : 'quiz-progress-fill');
+        const progressText = document.getElementById('learning-progress');
+
         if (scoreBadge) scoreBadge.textContent = this.isExamMode ? (this.quizState.currentIndex) : this.quizState.score;
 
         // Update progress bar
@@ -213,12 +252,27 @@ class TechZeichnerApp {
             progressFill.style.width = `${progressPercent}%`;
         }
 
+        if (progressText) {
+            progressText.textContent = `Frage ${this.quizState.currentIndex + 1}/${this.quizState.questions.length}`;
+        }
+
         if (this.quizState.currentIndex >= this.quizState.questions.length) {
             // Final progress 100%
             if (progressFill) progressFill.style.width = '100%';
 
             if (this.isExamMode) {
                 this.finishExam();
+            } else if (this.isLearningMode) {
+                container.innerHTML = `
+                    <div class="text-center" style="text-align: center; padding: 20px 0;">
+                        <i class="fas fa-check-circle" style="font-size: 3rem; color: #10b981; margin-bottom: 15px;"></i>
+                        <h3 style="margin-bottom: 10px;">Lern-Session beendet!</h3>
+                        <p style="margin-bottom: 20px; color: var(--text-muted);">Du hast alle Fragen in diesem Modul durchgesehen.</p>
+                        <button class="btn-primary" onclick="app.navigateTo('home')">Zurück zum Start</button>
+                    </div>
+                `;
+                document.getElementById('btn-show-solution').style.display = 'none';
+                document.getElementById('btn-next-learning').style.display = 'none';
             } else {
                 let reviewBtn = '';
                 if (this.quizState.incorrectAnswers.length > 0) {
@@ -244,20 +298,41 @@ class TechZeichnerApp {
             optionsHTML += `<div class="quiz-option" onclick="app.selectAnswer(${idx}, this)">${opt}</div>`;
         });
 
-        container.innerHTML = `
-            <div class="quiz-progress" style="margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted);">
-                Frage ${this.quizState.currentIndex + 1} von ${this.quizState.questions.length}
-            </div>
-            <div class="quiz-question">${q.question}</div>
-            <div class="quiz-options">
-                ${optionsHTML}
-            </div>
-            <div id="quiz-explanation" style="display: none; margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); border-left: 3px solid var(--accent-blue); padding-left: 10px;"></div>
-            <button id="next-btn" class="btn-primary quiz-next-btn" style="display: none;" onclick="app.nextQuestion()">Nächste Frage</button>
-        `;
+        if (this.isLearningMode) {
+            container.innerHTML = `
+                <div class="quiz-progress" style="margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted);">
+                    Kategorie: ${q.category}
+                </div>
+                <div class="quiz-question">${q.question}</div>
+                <div id="learning-options-reveal" class="quiz-options" style="display: none;">
+                    <!-- Will be revealed on showSolution -->
+                </div>
+            `;
+            // Reset visibility of buttons
+            document.getElementById('btn-show-solution').style.display = 'flex';
+            document.getElementById('btn-next-learning').style.display = 'flex';
+            document.getElementById('learning-explanation').style.display = 'none';
+        } else {
+            container.innerHTML = `
+                <div class="quiz-progress" style="margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted);">
+                    Frage ${this.quizState.currentIndex + 1} von ${this.quizState.questions.length}
+                </div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+                    ${optionsHTML}
+                </div>
+                <div id="quiz-explanation" style="display: none; margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); border-left: 3px solid var(--accent-blue); padding-left: 10px;"></div>
+                <button id="next-btn" class="btn-primary quiz-next-btn" style="display: none;" onclick="app.nextQuestion()">Nächste Frage</button>
+            `;
+        }
     }
 
     selectAnswer(selectedIndex, element) {
+        if (this.isLearningMode) {
+            this.showSolution();
+            return;
+        }
+
         if (document.getElementById('next-btn').style.display === 'flex') return;
 
         const q = this.quizState.questions[this.quizState.currentIndex];
@@ -276,7 +351,7 @@ class TechZeichnerApp {
                     selectedIdx: selectedIndex
                 });
             }
-            
+
             document.getElementById('next-btn').style.display = 'flex';
             document.getElementById('next-btn').textContent = "Weiter";
         } else {
@@ -303,13 +378,40 @@ class TechZeichnerApp {
         }
     }
 
+    showSolution() {
+        if (!this.isLearningMode) return;
+
+        const q = this.quizState.questions[this.quizState.currentIndex];
+        const optionsReveal = document.getElementById('learning-options-reveal');
+
+        // Render all options but highlight the correct one
+        let optionsHTML = '';
+        q.options.forEach((opt, idx) => {
+            const isCorrect = (idx === q.correctIndex);
+            optionsHTML += `<div class="quiz-option ${isCorrect ? 'correct' : ''}" style="cursor: default;">${opt}</div>`;
+        });
+
+        optionsReveal.innerHTML = optionsHTML;
+        optionsReveal.style.display = 'flex';
+
+        // Show explanation
+        const expContainer = document.getElementById('learning-explanation');
+        const expText = expContainer.querySelector('.explanation');
+        expText.innerHTML = `<strong>Erklärung:</strong> ${q.explanation}`;
+        expContainer.style.display = 'block';
+
+        // Toggle buttons
+        document.getElementById('btn-show-solution').style.display = 'none';
+        document.getElementById('btn-next-learning').style.display = 'flex';
+    }
+
     finishExam() {
         this.stopExamTimer();
         const container = document.getElementById('quiz-container');
         const score = this.quizState.score;
         const total = this.quizState.questions.length;
         const percent = (score / total) * 100;
-        
+
         let grade = 5;
         let message = "Nicht bestanden";
         let color = "#ef4444";
@@ -384,42 +486,6 @@ class TechZeichnerApp {
 
 
 
-    // --- Reference Logic ---
-    initReference() {
-        this.renderReferenceList(appData.referenceData);
-    }
-
-    renderReferenceList(data) {
-        const list = document.getElementById('reference-list');
-        if (!list) return;
-        list.innerHTML = '';
-        data.forEach((item) => {
-            const el = document.createElement('div');
-            el.className = 'ref-item glass-card';
-            el.innerHTML = `
-                <div class="ref-item-header">
-                    <h3>${item.title}</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="ref-item-content">
-                    ${item.content}
-                </div>
-            `;
-            el.addEventListener('click', () => {
-                el.classList.toggle('expanded');
-            });
-            list.appendChild(el);
-        });
-    }
-
-    filterReference() {
-        const query = document.getElementById('ref-search').value.toLowerCase();
-        const filtered = appData.referenceData.filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.content.toLowerCase().includes(query)
-        );
-        this.renderReferenceList(filtered);
-    }
 }
 
 const app = new TechZeichnerApp();
