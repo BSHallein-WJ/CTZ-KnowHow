@@ -229,6 +229,20 @@ const externalQuestions = [
         "erklaerung": "Ra steht für den arithmetischen Mittenrauwert einer Oberfläche."
     },
 
+    {
+        "id": 2016,
+        "kategorie": "Linienarten",
+        "frage": "Wie breit ist eine 'unsichtbare Linie' in der Liniengruppe 0,5?",
+        "optionen": ["0,35mm", "0,5mm", "0,7mm", "0,25mm"],
+        "antwort": 3,
+        "erklaerung": "Die 'unsichtbare Linie' ist eine schmale Linie, also halb so breit wie die Liniengruppe. Bei der Liniengruppe 0,5 also 0,25mm breit"
+    },
+
+
+
+
+
+
     // --- MAẞSTÄBE (3000+) ---
     {
         "id": 3001,
