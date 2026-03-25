@@ -195,7 +195,7 @@ class TechZeichnerApp {
         if (this.isExamMode) {
             if (quizTitle) quizTitle.textContent = "Prüfungssimulation";
             if (timerContainer) timerContainer.style.display = 'flex';
-            if (scoreIcon) scoreIcon.className = 'fas fa-stopwatch';
+            if (scoreIcon) scoreIcon.textContent = '🕒';
 
             // Pick 20 random questions from all
             this.quizState.questions = [...this.allQuestions]
@@ -206,7 +206,7 @@ class TechZeichnerApp {
         } else {
             if (quizTitle) quizTitle.textContent = "Wissens-Quiz";
             if (timerContainer) timerContainer.style.display = 'none';
-            if (scoreIcon) scoreIcon.className = 'fas fa-star';
+            if (scoreIcon) scoreIcon.textContent = '⭐';
 
             let filteredQuestions = [...this.allQuestions];
             if (this.currentQuizCategory && this.currentQuizCategory !== 'all') {
@@ -272,7 +272,7 @@ class TechZeichnerApp {
             } else if (this.isLearningMode) {
                 container.innerHTML = `
                     <div class="text-center" style="text-align: center; padding: 20px 0;">
-                        <i class="fas fa-check-circle" style="font-size: 3rem; color: #10b981; margin-bottom: 15px;"></i>
+                        <div style="font-size: 3rem; margin-bottom: 15px;">✅</div>
                         <h3 style="margin-bottom: 10px;">Lern-Session beendet!</h3>
                         <p style="margin-bottom: 20px; color: var(--text-muted);">Du hast alle Fragen in diesem Modul durchgesehen.</p>
                         <button class="btn-primary" onclick="app.navigateTo('home')">Zurück zum Start</button>
@@ -288,7 +288,7 @@ class TechZeichnerApp {
 
                 container.innerHTML = `
                     <div class="text-center" style="text-align: center; padding: 20px 0;">
-                        <i class="fas fa-trophy" style="font-size: 3rem; color: #fbbf24; margin-bottom: 15px;"></i>
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🏆</div>
                         <h3 style="margin-bottom: 10px;">Quiz beendet!</h3>
                         <p style="margin-bottom: 20px; color: var(--text-muted);">In dieser Runde: ${this.quizState.score} / ${this.quizState.questions.length}</p>
                         ${reviewBtn}
@@ -313,6 +313,9 @@ class TechZeichnerApp {
                 <div class="quiz-question">${q.question}</div>
                 <div id="learning-options-reveal" class="quiz-options" style="display: none;">
                     <!-- Will be revealed on showSolution -->
+                </div>
+                <div id="learning-explanation" style="display: none; margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); border-left: 3px solid var(--accent-blue); padding-left: 10px;">
+                    <div class="explanation"></div>
                 </div>
             `;
             // Reset visibility of buttons
@@ -391,12 +394,9 @@ class TechZeichnerApp {
         const q = this.quizState.questions[this.quizState.currentIndex];
         const optionsReveal = document.getElementById('learning-options-reveal');
 
-        // Render all options but highlight the correct one
-        let optionsHTML = '';
-        q.options.forEach((opt, idx) => {
-            const isCorrect = (idx === q.correctIndex);
-            optionsHTML += `<div class="quiz-option ${isCorrect ? 'correct' : ''}" style="cursor: default;">${opt}</div>`;
-        });
+        // Render only the correct option
+        const correctOpt = q.options[q.correctIndex];
+        const optionsHTML = `<div class="quiz-option correct" style="cursor: default;">${correctOpt}</div>`;
 
         optionsReveal.innerHTML = optionsHTML;
         optionsReveal.style.display = 'flex';

@@ -17,7 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -158,10 +158,9 @@ body {
 .module-icon {
     font-size: 2.5rem;
     margin-bottom: 15px;
-    background: var(--accent-gradient);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .module-card h3 {
@@ -377,7 +376,7 @@ body {
     width: 50px;
 }
 
-.nav-btn i {
+.nav-btn .nav-icon {
     font-size: 1.15rem;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -390,12 +389,8 @@ body {
     color: var(--accent-blue);
 }
 
-.nav-btn.active i {
+.nav-btn.active .nav-icon {
     transform: translatey(2px);
-    background: var(--accent-gradient);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .nav-btn-circle {
@@ -446,8 +441,8 @@ body {
     background: linear-gradient(145deg, rgba(239, 68, 68, 0.1), rgba(255, 255, 255, 0.05));
 }
 
-.exam-card .module-icon i {
-    color: #ef4444;
+.exam-card .module-icon {
+    filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.3));
 }
 
 /* Alle Themen Card - Greenish */
@@ -456,8 +451,8 @@ body {
     background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), rgba(255, 255, 255, 0.05));
 }
 
-.all-topics-card .module-icon i {
-    color: #10b981;
+.all-topics-card .module-icon {
+    filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3));
 }
 
 .timer-card {
@@ -624,4 +619,31 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+/* Legal Footer */
+.legal-footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.85rem;
+}
+
+.legal-footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.legal-footer a:hover {
+    color: var(--accent-blue);
+}
+
+.legal-footer .separator {
+    color: var(--glass-border);
 }

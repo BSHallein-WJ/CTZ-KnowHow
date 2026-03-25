@@ -73,15 +73,6 @@ const externalQuestions = [
         "erklaerung": "Die Normschrift sichert Lesbarkeit und ein einheitliches Erscheinungsbild."
     },
 
-
-    {
-        "id": 1014,
-        "kategorie": "Blattformate",
-        "frage": "Wie groß ist die Fläche eines A0-Blattes genau?",
-        "optionen": ["0,5 m²", "1 m²", "2 m²", "1,5 m²"],
-        "antwort": 1,
-        "erklaerung": "Die Ausgangsgröße aller Formate ist das A0-Blatt mit einer Fläche von genau 1 m²."
-    },
     {
         "id": 1015,
         "kategorie": "Blattformate",

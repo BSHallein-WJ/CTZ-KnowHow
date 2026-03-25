@@ -7,10 +7,8 @@
     <meta name="theme-color" content="#0f172a">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192x192.png">
-    <title>TechZeichner Pro - Lern-App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Verwendung von System-Schriftarten für 100% Datenschutz & Performance -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -24,15 +22,15 @@
         <!-- Bottom Navigation -->
         <nav class="glass-nav">
             <button class="nav-btn active" data-target="home">
-                <i class="fas fa-home"></i>
+                <span class="nav-icon">🏠</span>
                 <span>Home</span>
             </button>
             <button class="nav-btn" data-target="learning-home">
-                <i class="fas fa-graduation-cap"></i>
+                <span class="nav-icon">🎓</span>
                 <span>Lernen</span>
             </button>
             <button class="nav-btn" data-target="quiz-home">
-                <i class="fas fa-question-circle"></i>
+                <span class="nav-icon">🧩</span>
                 <span>Quiz</span>
             </button>
         </nav>
@@ -40,10 +38,10 @@
         <!-- Global Learning Actions (Fixed at bottom) -->
         <div id="global-learning-actions" class="learning-actions" style="display: none;">
             <button id="btn-show-solution" class="btn-primary" onclick="app.showSolution()">
-                <i class="fas fa-eye"></i> Lösung anzeigen
+                <span>👁️</span> Lösung anzeigen
             </button>
             <button id="btn-next-learning" class="btn-primary" style="display: none;" onclick="app.nextQuestion()">
-                Nächste Frage <i class="fas fa-arrow-right"></i>
+                Nächste Frage ➡️
             </button>
         </div>
     </div>
@@ -58,34 +56,40 @@
 
             <div class="gateway-grid">
                 <div class="gateway-card glass-card learning-card" onclick="app.navigateTo('learning-home')">
-                    <div class="module-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="module-icon">🎓</div>
                     <div class="gateway-info">
-                        <h3>Lernen 🎓</h3>
+                        <h3>Lernen</h3>
                         <p>Fragen im Karteikarten-Stil durchgehen.</p>
                     </div>
-                    <i class="fas fa-chevron-right"></i>
+                    <span class="chevron">➡️</span>
                 </div>
 
                 <div class="gateway-card glass-card quiz-card" onclick="app.navigateTo('quiz-home')">
-                    <div class="module-icon"><i class="fas fa-question-circle"></i></div>
+                    <div class="module-icon">🧩</div>
                     <div class="gateway-info">
-                        <h3>Quiz 🧩</h3>
+                        <h3>Quiz</h3>
                         <p>Wissen testen mit Punkten & Feedback.</p>
                     </div>
-                    <i class="fas fa-chevron-right"></i>
+                    <span class="chevron">➡️</span>
                 </div>
 
                 <div class="gateway-card glass-card exam-card" onclick="app.startExam()">
-                    <div class="module-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="module-icon">👨‍🎓</div>
                     <div class="gateway-info">
-                        <h3>Prüfungssimulation 🖋️</h3>
+                        <h3>Prüfungssimulation</h3>
                         <p>20 Fragen | 8 Minuten | Ohne Hilfe.</p>
                     </div>
-                    <i class="fas fa-chevron-right"></i>
+                    <span class="chevron">➡️</span>
                 </div>
+            </div>
+            <div class="legal-footer">
+                <a href="impressum.html">Impressum</a>
+                <span class="separator">•</span>
+                <a href="datenschutz.html">Datenschutz</a>
             </div>
         </div>
     </template>
+
 
     <template id="tpl-quiz-home">
         <div class="view quiz-home-view fade-in">
@@ -100,32 +104,32 @@
 
             <div class="modules-grid">
                 <div class="module-card glass-card" onclick="app.startQuiz('Blattformate')">
-                    <div class="module-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="module-icon">📄</div>
                     <h3>Blattformate</h3>
                     <p>Wissen testen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startQuiz('Linienarten')">
-                    <div class="module-icon"><i class="fas fa-pen-nib"></i></div>
+                    <div class="module-icon">🖋️</div>
                     <h3>Linienarten</h3>
                     <p>Wissen testen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startQuiz('Maßstäbe')">
-                    <div class="module-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <div class="module-icon">📏</div>
                     <h3>Maßstäbe</h3>
                     <p>Wissen testen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startQuiz('Bemaßung')">
-                    <div class="module-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                    <div class="module-icon">↔️</div>
                     <h3>Bemaßung</h3>
                     <p>Wissen testen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startQuiz('Projektionen')">
-                    <div class="module-icon"><i class="fas fa-cube"></i></div>
+                    <div class="module-icon">📦</div>
                     <h3>Projektionen</h3>
                     <p>Wissen testen</p>
                 </div>
                 <div class="module-card glass-card all-topics-card" onclick="app.startQuiz('all')">
-                    <div class="module-icon"><i class="fas fa-random"></i></div>
+                    <div class="module-icon">🔀</div>
                     <h3>Alle Themen</h3>
                     <p>Gemischt testen</p>
                 </div>
@@ -138,7 +142,7 @@
             <div class="quiz-header">
                 <h2 id="quiz-title">Wissens-Quiz</h2>
                 <div class="score-badge">
-                    <i class="fas fa-star" id="score-icon"></i>
+                    <span id="score-icon">⭐</span>
                     <span id="quiz-score">0</span>
                 </div>
             </div>
@@ -152,7 +156,7 @@
             </div>
             <!-- Timer für Prüfung -->
             <div id="exam-timer-container" class="glass-card timer-card" style="display: none;">
-                <i class="fas fa-clock"></i>
+                <span>🕒</span>
                 <span id="exam-timer">8:00</span>
             </div>
         </div>
@@ -174,32 +178,32 @@
 
             <div class="modules-grid" id="learning-theme-grid">
                 <div class="module-card glass-card" onclick="app.startLearning('Blattformate')">
-                    <div class="module-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="module-icon">📄</div>
                     <h3>Blattformate</h3>
                     <p>Lernen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startLearning('Linienarten')">
-                    <div class="module-icon"><i class="fas fa-pen-nib"></i></div>
+                    <div class="module-icon">🖋️</div>
                     <h3>Linienarten</h3>
                     <p>Lernen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startLearning('Maßstäbe')">
-                    <div class="module-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <div class="module-icon">📏</div>
                     <h3>Maßstäbe</h3>
                     <p>Lernen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startLearning('Bemaßung')">
-                    <div class="module-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                    <div class="module-icon">↔️</div>
                     <h3>Bemaßung</h3>
                     <p>Lernen</p>
                 </div>
                 <div class="module-card glass-card" onclick="app.startLearning('Projektionen')">
-                    <div class="module-icon"><i class="fas fa-cube"></i></div>
+                    <div class="module-icon">📦</div>
                     <h3>Projektionen</h3>
                     <p>Lernen</p>
                 </div>
                 <div class="module-card glass-card all-topics-card" onclick="app.startLearning('all')">
-                    <div class="module-icon"><i class="fas fa-random"></i></div>
+                    <div class="module-icon">🔀</div>
                     <h3>Alle Themen</h3>
                     <p>Gemischt lernen</p>
                 </div>
