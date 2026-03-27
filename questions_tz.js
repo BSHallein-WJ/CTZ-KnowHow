@@ -60,7 +60,7 @@ const externalQuestions = [
         "id": 1008,
         "kategorie": "Blattformate",
         "frage": "Woran erkennt man im Schriftfeld sofort die angewendete Projektionsmethode?",
-        "optionen": ["Farbe", "Name des Zeichners", "Lage des Symbolkegels", "Maßstab"],
+        "optionen": ["Farbe", "Name der Zeichners", "Lage des Symbolkegels", "Maßstab"],
         "antwort": 2,
         "erklaerung": "Der Symbolkegel zeigt an, ob Methode 1 (Europa) oder Methode 3 (USA) verwendet wurde."
     },
