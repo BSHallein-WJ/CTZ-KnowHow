@@ -643,7 +643,12 @@ const externalQuestions = [
         "id": 6001,
         "kategorie": "Schnitte",
         "frage": "Wie werden vollflächig aneinandergrenzende Bauteile in einer Baugruppen-Schnittdarstellung unterschieden?",
-        "optionen": ["Durch unterschiedliche Farben", "Durch entgegengesetzte Schraffurrichtung oder andere Schraffurabstände", "Gar nicht", "Durch breitere Kantenlinien"],
+        "optionen": [
+            "Durch unterschiedliche Farben",
+            "Durch entgegengesetzte Schraffurrichtung oder andere Schraffurabstände",
+            "Gar nicht",
+            "Durch breitere Kantenlinien"
+        ],
         "antwort": 1,
         "erklaerung": "Aneinandergrenzende Teile müssen in Schnittdarstellungen durch unterschiedliche Schraffur (Richtung oder Abstand) klar voneinander unterschieden werden."
     },
@@ -1003,7 +1008,7 @@ const externalQuestions = [
     {
         "id": 7008,
         "kategorie": "Gewinde",
-        "frage": "Wie wird der Gewindeauslauf nach ÖNORM EN ISO 225 dargestellt?",
+        "frage": "Wie wird die Nutzbare Gewindelänge begrenzt? (z.B. in Gewindegrundlöchern)",
         "optionen": [
             "Als waagrechte schmale Volllinie",
             "Als schmale Strichlinie",
@@ -1011,7 +1016,7 @@ const externalQuestions = [
             "Als gestrichelte Linie"
         ],
         "antwort": 3,
-        "erklaerung": "Der Auslauf wird als schräg verlaufende schmale Volllinie dargestellt."
+        "erklaerung": "Die nutzbare Gewindelänge wird durch eine breit Volllinie begrenzt. Der Gewindeauslauf wir in der Regel nicht dargestellt."
     },
     {
         "id": 7009,
@@ -1024,7 +1029,7 @@ const externalQuestions = [
             "Nur zur Hälfte"
         ],
         "antwort": 2,
-        "erklaerung": "Außengewinde werden im Schnitt bis zum Außendurchmesser schraffiert."
+        "erklaerung": "Außengewinde werden im Schnitt bis zum Außendurchmesser schraffiert. Immer nur bis zur breiten Volllinie"
     },
     {
         "id": 7010,
@@ -1033,24 +1038,24 @@ const externalQuestions = [
         "optionen": [
             "Rechtsgewinde, 12 mm Steigung",
             "Linksgewinde, Steigung 1,5 mm",
-            "Linksgewinde, Nenndurchmesser 12 mm",
-            "Sondergewinde ohne Drehsinn"
+            "Linksgewinde, Nenn-Ø 1,5 mm", ,
+            "Sondergewinde, Nenn-Ø 12mm, Längenhub 1,5mm"
         ],
         "antwort": 1,
-        "erklaerung": "LH bedeutet Linksgewinde, 1,5 gibt die Steigung an."
+        "erklaerung": "M12 × 1,5 LH bedeutet --> M12-Nenngröße, 1,5-Steigung, LH-Linksgewinde (Left Hand)."
     },
     {
         "id": 7011,
         "kategorie": "Gewinde",
         "frage": "Wie wird ein Innengewinde im Schnitt dargestellt?",
         "optionen": [
-            "Bis zum Außendurchmesser schraffiert",
-            "Gar nicht schraffiert",
-            "Bis zum Kerndurchmesser schraffiert",
-            "Mit dicker Strichpunkte-Linie"
+            "Schraffur geht bis zu den schmalen Gewindelinien",
+            "Es wird nichts schraffiert",
+            "Die Schraffur geht bis zum Kerndurchmesser",
+            "Es wird mit Strichpunkt-Linien schraffiert"
         ],
         "antwort": 2,
-        "erklaerung": "Innengewinde werden im Schnitt bis zum Kerndurchmesser schraffiert."
+        "erklaerung": "Innengewinde werden im Schnitt bis zum Kerndurchmesser schraffiert. Also durch die schmalen Gewindelinien hindurch!"
     },
     {
         "id": 7012,
@@ -1068,7 +1073,7 @@ const externalQuestions = [
     {
         "id": 7013,
         "kategorie": "Gewinde",
-        "frage": "Wie müssen Gewindefreistiche nach ÖNORM M 1802 dargestellt werden?",
+        "frage": "Wie werden Gewindefreistiche dargestellt?",
         "optionen": [
             "Als einfache gestrichelte Linie",
             "Als kreisförmige Nut",
@@ -1090,11 +1095,35 @@ const externalQuestions = [
         ],
         "antwort": 2,
         "erklaerung": "Regel: Außengewinde überdeckt Innengewinde, der überdeckte Teil wird nicht gezeigt."
+    },
+
+    {
+        "id": 7015,
+        "kategorie": "Gewinde",
+        "frage": "Gewindebolzen werden mit 45°-Fasen versehen. Diese Aussage ist....?",
+        "optionen": [
+            "... falsch. Es darf keine Fase angebracht werden",
+            "... falsch. Es müssen 30° Fasen sein",
+            "... falsch. Es müssen 60° Fasen sein",
+            "... grundlegend richtig"
+        ],
+        "antwort": 3,
+        "erklaerung": "Regel: Außengewinde bzw. Gewindebolzen werden in der Regel mit 45°-Fasen versehen."
+    },
+
+    {
+        "id": 7016,
+        "kategorie": "Gewinde",
+        "frage": "Innengewinde: Werden herstellungsbedingte Gewindesenkungen in technischen Zeichnungen immer mit 45°-Fasen versehen?",
+        "optionen": [
+            "Ja - damit das Gewinde nicht beschädigt wird",
+            "Nein - es müssen 30° Fasen sein",
+            "Ja - sie müssen eingezeichnet werden",
+            "Nein - Sie werden in der Regel nicht eingezeichnet"
+        ],
+        "antwort": 3,
+        "erklaerung": "Herstellungsbedingte Gewindesenkungen in technischen Zeichnungen werden in der Regel nicht eingezeichnet. Das ist nur in Sonderfällen nötig!"
     }
-
-
-
-
 
 
 
