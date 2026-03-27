@@ -166,9 +166,19 @@
                 <div id="quiz-progress-fill" class="quiz-progress-bar-fill"></div>
             </div>
 
+
+            <!-- Question area -->
             <div id="quiz-container" class="glass-card">
                 <!-- Question content injected here -->
             </div>
+
+            <!-- Quiz Actions (Fixed at bottom) -->
+            <div id="quiz-actions-container" class="learning-actions" style="display: none;">
+                <button id="persistent-next-btn" class="btn-primary" onclick="app.nextQuestion()">
+                    Nächste Frage ➡️
+                </button>
+            </div>
+
             <!-- Timer für Prüfung -->
             <div id="exam-timer-container" class="glass-card timer-card" style="display: none;">
                 <span>🕒</span>

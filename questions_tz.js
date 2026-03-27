@@ -230,7 +230,7 @@ const externalQuestions = [
     },
 
     {
-        "id": 2016,
+        "id": 2017,
         "kategorie": "Linienarten",
         "frage": "Wie breit ist eine 'unsichtbare Linie' in der Liniengruppe 0,5?",
         "optionen": ["0,35mm", "0,5mm", "0,7mm", "0,25mm"],

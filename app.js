@@ -125,22 +125,16 @@ class TechZeichnerApp {
         this.renderView(viewId);
     }
     renderView(viewId, callback = null) {
-        // Log current view for debugging
-        console.log("Rendering view:", viewId);
-
-        // Robust toggle for global learning actions
         const learningActions = document.getElementById('global-learning-actions');
+        const quizActions = document.getElementById('quiz-actions-container');
+
         if (learningActions) {
-            if (viewId === 'learning-session') {
-                learningActions.style.display = 'flex';
-                // Reinforce button states
-                const showBtn = document.getElementById('btn-show-solution');
-                const nextBtn = document.getElementById('btn-next-learning');
-                if (showBtn) showBtn.style.display = 'flex';
-                if (nextBtn) nextBtn.style.display = 'none';
-            } else {
-                learningActions.style.display = 'none';
-            }
+            learningActions.style.display = (viewId === 'learning-session') ? 'flex' : 'none';
+        }
+        
+        // Quiz-Actions visibility is also handled but usually reset in renderView
+        if (quizActions) {
+            quizActions.style.display = 'none'; 
         }
 
         const template = document.getElementById(`tpl-${viewId}`);
@@ -368,8 +362,11 @@ class TechZeichnerApp {
                     ${optionsHTML}
                 </div>
                 <div id="quiz-explanation" style="display: none; margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); border-left: 3px solid var(--accent-blue); padding-left: 10px;"></div>
-                <button id="next-btn" class="btn-primary quiz-next-btn" style="display: none;" onclick="app.nextQuestion()">Nächste Frage</button>
             `;
+            
+            // Hide the next button when new question renders
+            const quizNextBtn = document.getElementById('quiz-actions-container');
+            if (quizNextBtn) quizNextBtn.style.display = 'none';
         }
     }
 
@@ -379,7 +376,8 @@ class TechZeichnerApp {
             return;
         }
 
-        if (document.getElementById('next-btn').style.display === 'flex') return;
+        const quizActions = document.getElementById('quiz-actions-container');
+        if (quizActions && quizActions.style.display === 'flex') return;
 
         const q = this.quizState.questions[this.quizState.currentIndex];
         const options = document.querySelectorAll('.quiz-option');
@@ -398,8 +396,11 @@ class TechZeichnerApp {
                 });
             }
 
-            document.getElementById('next-btn').style.display = 'flex';
-            document.getElementById('next-btn').textContent = "Weiter";
+            const nextBtn = document.getElementById('quiz-actions-container');
+            if (nextBtn) {
+                nextBtn.style.display = 'flex';
+                document.getElementById('persistent-next-btn').textContent = "Weiter";
+            }
         } else {
             if (isCorrect) {
                 element.classList.add('correct');
@@ -420,7 +421,13 @@ class TechZeichnerApp {
             const exp = document.getElementById('quiz-explanation');
             exp.innerHTML = `<strong>Erklärung:</strong> ${q.explanation}`;
             exp.style.display = 'block';
-            document.getElementById('next-btn').style.display = 'flex';
+            
+            // Show persistent button
+            const nextBtn = document.getElementById('quiz-actions-container');
+            if (nextBtn) {
+                nextBtn.style.display = 'flex';
+                document.getElementById('persistent-next-btn').textContent = "Nächste Frage ➡️";
+            }
         }
     }
 
