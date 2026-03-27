@@ -621,4 +621,482 @@ const externalQuestions = [
         "erklaerung": "Aufriss (=Hauptansicht oder Vorderansicht), Grundriss (=Draufsicht), Kreuzriss (=Seitenansicht)"
     },
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --- SCHNITTE (6000+) ---
+    {
+        "id": 6001,
+        "kategorie": "Schnitte",
+        "frage": "Wie werden vollflächig aneinandergrenzende Bauteile in einer Baugruppen-Schnittdarstellung unterschieden?",
+        "optionen": ["Durch unterschiedliche Farben", "Durch entgegengesetzte Schraffurrichtung oder andere Schraffurabstände", "Gar nicht", "Durch breitere Kantenlinien"],
+        "antwort": 1,
+        "erklaerung": "Aneinandergrenzende Teile müssen in Schnittdarstellungen durch unterschiedliche Schraffur (Richtung oder Abstand) klar voneinander unterschieden werden."
+    },
+    {
+        "id": 6002,
+        "kategorie": "Schnitte",
+        "frage": "Welche Elemente werden in einer Schnittdarstellung als Vollschnitt üblicherweise längs NICHT geschnitten (schraffiert)?",
+        "optionen": ["Gehäuseteile und Rohre", "Deckel und Flansche", "Alle Bauteile werden zwingend schraffiert", "Wellen, Bolzen, Niete, Passfedern und Schrauben"],
+        "antwort": 3,
+        "erklaerung": "Vollkörper ohne innere Hohlräume, wie Normteile oder Vollwellen, werden im Längsschnitt in der Regel nicht geschnitten (schraffiert) dargestellt."
+    },
+    {
+        "id": 6003,
+        "kategorie": "Schnitte",
+        "frage": "Wodurch wird ein Ausbruch an einem Teil meistens begrenzt?",
+        "optionen": ["Durch eine breite Strichpunktlinie", "Durch eine schmale Freihandlinie", "Durch eine dicke Volllinie", "Durch eine gestrichelte Linie"],
+        "antwort": 1,
+        "erklaerung": "Ein Ausbruch wird immer mit einer schmalen Freihandlinie (Bruchkannte) abgegrenzt."
+    },
+
+
+    {
+        "id": 6004,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird die Schraffur einer Schnittfläche nach ÖNORM EN ISO 128-3 dargestellt?",
+        "optionen": [
+            "Mit breiten Vollinien im Abstand von ca. 10 mm",
+            "Mit parallelen, schmalen Vollinien im Abstand von ca. 3 mm",
+            "Mit Strich-Punkt-Linien im 45°-Winkel",
+            "Mit schmalen gestrichelten Linien"
+        ],
+        "antwort": 1,
+        "erklaerung": "Die Schraffur besteht aus schmalen, parallelen Vollinien im Abstand von etwa 3 mm, üblicherweise unter 45°."
+    },
+    {
+        "id": 6005,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird beim Halbschnitt die Trennlinie zwischen Ansicht und Schnitt dargestellt?",
+        "optionen": [
+            "Mit einer breiten Volllinie",
+            "Mit einer dünnen Freihandlinie",
+            "Mit einer schmalen Strich-Punkt-Linie",
+            "Mit einer dicken Strich-Punkt-Linie"
+        ],
+        "antwort": 2,
+        "erklaerung": "Die Trennlinie zwischen Ansicht und Schnitt beim Halbschnitt ist eine schmale Strich-Punkt-Linie."
+    },
+    {
+        "id": 6006,
+        "kategorie": "Schnitte",
+        "frage": "Was muss bei Schnittdarstellungen eingezeichnet werden, wenn hinter der Schnittebene durchgehende Körperkanten liegen?",
+        "optionen": [
+            "Verdeckte Kanten mit Strichlinien",
+            "Umlaufkanten",
+            "Maßpfeile",
+            "Eine doppelte Schraffur"
+        ],
+        "antwort": 1,
+        "erklaerung": "Durchgehende Körperkanten hinter der Schnittebene müssen als Umlaufkanten dargestellt werden."
+    },
+    {
+        "id": 6007,
+        "kategorie": "Schnitte",
+        "frage": "Welche Regel gilt beim Schneiden von vollen Körpern wie Schrauben, Bolzen oder Wellen?",
+        "optionen": [
+            "Sie werden immer in Längsrichtung geschnitten",
+            "Sie dürfen nur im Halbschnitt dargestellt werden",
+            "Sie werden in Längsrichtung nicht geschnitten",
+            "Sie dürfen nicht schraffiert werden"
+        ],
+        "antwort": 2,
+        "erklaerung": "Vollkörper wie Schrauben oder Wellen werden in der Längsrichtung nicht geschnitten."
+    },
+    {
+        "id": 6008,
+        "kategorie": "Schnitte",
+        "frage": "Wie werden Rippen oder Stege in der Schnittdarstellung dargestellt, wenn die Schnittebene durch sie hindurchgeht?",
+        "optionen": [
+            "Sie werden voll schraffiert",
+            "Sie werden nicht schraffiert dargestellt",
+            "Sie werden mit doppelter Schraffur dargestellt",
+            "Sie werden als verdeckte Kanten dargestellt"
+        ],
+        "antwort": 1,
+        "erklaerung": "Rippen, Stege und Speichen werden in Schnittebene nicht schraffiert, da sie massive Elemente darstellen."
+    },
+    {
+        "id": 6009,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird der Querschnitt beim Profilschnitt innerhalb einer Ansicht dargestellt?",
+        "optionen": [
+            "Mit breiter Vollinie und 30° Schraffur",
+            "Schraffiert und mit schmaler Vollinie umrandet",
+            "Nur mit gestrichelten Linien zur Kennzeichnung",
+            "Unschraffiert mit dicker Außenkante"
+        ],
+        "antwort": 1,
+        "erklaerung": "Beim Profilschnitt wird der Querschnitt schraffiert und mit einer schmalen Vollinie eingezeichnet."
+    },
+    {
+        "id": 6010,
+        "kategorie": "Schnitte",
+        "frage": "Wie werden Schnittlinien in einer Darstellung gekennzeichnet, wenn nur eine Ebene geschnitten wird?",
+        "optionen": [
+            "Mit langen, dicken Strich-Punkt-Linien",
+            "Mit schmalen Volllinien und Kreisen an den Enden",
+            "Mit breiten Strich-Punkt-Linien und Pfeilen",
+            "Mit dicken gestrichelten Linien"
+        ],
+        "antwort": 2,
+        "erklaerung": "Schnittlinien werden mit breiten Strich-Punkt-Linien und Pfeilen dargestellt, die auf die Schnittrichtung zeigen."
+    },
+    {
+        "id": 6011,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird beim Teilausschnitt die Begrenzung des Schnittbereichs dargestellt?",
+        "optionen": [
+            "Mit einer Freihandlinie (Bruchlinie)",
+            "Mit einer breiten Vollinie",
+            "Mit einer dicken Strich-Punkt-Linie",
+            "Gar nicht – der Bereich bleibt offen"
+        ],
+        "antwort": 0,
+        "erklaerung": "Die Begrenzung eines Teilausschnitts erfolgt durch eine Freihandlinie, jedoch im Gegensatz zum Ausbruch ohne zwingende Darstellung aller Bruchkanten."
+    },
+
+
+
+    {
+        "id": 6012,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird die Schnittrichtung in technischen Zeichnungen angegeben?",
+        "optionen": [
+            "Durch eine dicke Volllinie ohne Markierungen",
+            "Durch Pfeile an der Schnittlinie",
+            "Durch eine gestrichelte Linie mit Punkten",
+            "Durch eine Freihandlinie"
+        ],
+        "antwort": 1,
+        "erklaerung": "Die Schnittrichtung wird durch Pfeile an den Enden der Schnittlinie dargestellt."
+    },
+    {
+        "id": 6013,
+        "kategorie": "Schnitte",
+        "frage": "Welche Linienart wird zur Darstellung der Schnittlinie verwendet?",
+        "optionen": [
+            "Schmale Volllinie",
+            "Breite Strich-Punkt-Linie",
+            "Dicke Volllinie",
+            "Schmale Strichlinie"
+        ],
+        "antwort": 1,
+        "erklaerung": "Schnittlinien werden mit einer breiten Strich-Punkt-Linie dargestellt."
+    },
+    {
+        "id": 6014,
+        "kategorie": "Schnitte",
+        "frage": "Wie werden geschnittene Hohlräume dargestellt?",
+        "optionen": [
+            "Sie werden schraffiert",
+            "Sie bleiben ungeschraffiert",
+            "Sie werden gestrichelt dargestellt",
+            "Sie werden mit doppelter Schraffur markiert"
+        ],
+        "antwort": 1,
+        "erklaerung": "Hohlräume werden nicht schraffiert, da sie kein Material darstellen."
+    },
+    {
+        "id": 6015,
+        "kategorie": "Schnitte",
+        "frage": "Was muss bei einem abgesetzten Schnitt besonders beachtet werden?",
+        "optionen": [
+            "Die Schraffur muss mehrfach gedreht werden",
+            "Die Schnittlinie darf ihre Richtung ändern",
+            "Die Schraffur darf nicht durchlaufen",
+            "Die Pfeile müssen entfallen"
+        ],
+        "antwort": 1,
+        "erklaerung": "Bei abgesetzten Schnitten kann die Schnittlinie ihre Richtung ändern."
+    },
+    {
+        "id": 6016,
+        "kategorie": "Schnitte",
+        "frage": "Wie werden nebeneinanderliegende Schnittflächen unterschiedlicher Bauteile dargestellt?",
+        "optionen": [
+            "Mit identischer Schraffurrichtung",
+            "Mit zufälligen Mustern",
+            "Mit unterschiedlicher Schraffurrichtung oder Neigung",
+            "Ganz ohne Schraffur"
+        ],
+        "antwort": 2,
+        "erklaerung": "Benachbarte Schnittflächen müssen unterschiedlich schraffiert werden, um Verwechslungen zu vermeiden."
+    },
+    {
+        "id": 6017,
+        "kategorie": "Schnitte",
+        "frage": "Wie werden Schrauben in einer Schnittzeichnung dargestellt?",
+        "optionen": [
+            "Immer voll schraffiert",
+            "Nur die Gewindespitze schraffiert",
+            "Nicht geschnitten und nicht schraffiert",
+            "Mit doppelter Schraffur"
+        ],
+        "antwort": 2,
+        "erklaerung": "Schrauben, Bolzen und Wellen werden in Längsrichtung nicht geschnitten und daher nicht schraffiert."
+    },
+    {
+        "id": 6018,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird ein Vollschnitt korrekt bezeichnet?",
+        "optionen": [
+            "Mit einem einzigen Buchstaben",
+            "Mit zwei gleichen Buchstaben an beiden Pfeilen",
+            "Mit Zahlen",
+            "Gar nicht – ein Vollschnitt wird nicht beschriftet"
+        ],
+        "antwort": 1,
+        "erklaerung": "Ein Schnitt wird mit zwei gleichen Buchstaben an den Pfeilspitzen bezeichnet, z. B. A–A."
+    },
+    {
+        "id": 6019,
+        "kategorie": "Schnitte",
+        "frage": "Wie wird die Schraffur bei sehr großen Flächen üblicherweise dargestellt?",
+        "optionen": [
+            "Vollständig mit gleichmäßigem Abstand",
+            "Nur am Rand oder teilweise schraffiert",
+            "Doppelt schraffiert",
+            "Mit gestrichelten Linien"
+        ],
+        "antwort": 1,
+        "erklaerung": "Sehr große Flächen werden oft nur teilweise schraffiert, um die Zeichnung übersichtlich zu halten."
+    },
+    {
+        "id": 6020,
+        "kategorie": "Schnitte",
+        "frage": "Welcher Schnitt zeigt nur einen Teil der Schnittfläche, um kleine Details hervorzuheben?",
+        "optionen": [
+            "Halbschnitt",
+            "Vollschnitt",
+            "Teilausschnitt",
+            "Abgesetzter Schnitt"
+        ],
+        "antwort": 2,
+        "erklaerung": "Der Teilausschnitt zeigt nur einen begrenzten Bereich der Schnittfläche."
+    },
+    {
+        "id": 6021,
+        "kategorie": "Schnitte",
+        "frage": "Welche Schraffur wird für Stahl in technischen Zeichnungen üblicherweise verwendet?",
+        "optionen": [
+            "45°-Schraffur",
+            "30°-Schraffur",
+            "90°-Schraffur",
+            "Eine besondere Stahl-Schraffur"
+        ],
+        "antwort": 0,
+        "erklaerung": "Metalle – darunter Stahl – werden standardmäßig mit einer Schraffur von 45° dargestellt."
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --- GEWINDE (7000+) ---
+    {
+        "id": 7001,
+        "kategorie": "Gewinde",
+        "frage": "Wie wird ein Außengewinde (z. B. auf einer Schraube) in der Seitenansicht normgerecht gezeichnet?",
+        "optionen": ["Außen breite Volllinie, Gewindegrund schmale Volllinie", "Außen schmale Volllinie, Gewindegrund breite Volllinie", "Mit zwei gestrichelten Linien", "Komplett mit dicker Volllinie"],
+        "antwort": 0,
+        "erklaerung": "Bei einem Außengewinde (Schraube) ist die äußere Kontur sichtbar und wird klassisch mit einer breiten Volllinie gezeichnet. Der Gewindegrund (Kerndurchmesser) wird durch eine schmale Volllinie dargestellt."
+    },
+    {
+        "id": 7002,
+        "kategorie": "Gewinde",
+        "frage": "Wie wird der Gewindegrund bei Bohrungen (Innengewinde) in der Draufsicht (von Oben) dargestellt?",
+        "optionen": ["Als vollständiger dicker Kreis", "Als gestrichelter Kreis", "Als 3/4-Kreis mit schmaler Volllinie", "Mit einem Fadenkreuz"],
+        "antwort": 2,
+        "erklaerung": "Der Gewindegrund eines Innengewindes wird in der Draufsicht als nicht geschlossener Kreis (etwa 3/4) mit einer schmalen Volllinie gezeichnet."
+    },
+    {
+        "id": 7003,
+        "kategorie": "Gewinde",
+        "frage": "Was bedeutet die Abkürzung 'M8' bei einer Gewindeangabe?",
+        "optionen": ["Maschinengewinde Steigung 8mm", "Metrisches ISO-Gewinde mit 8mm Nenndurchmesser", "Miniaturgewinde Größe 8", "Messinggewinde 8-gängig"],
+        "antwort": 1,
+        "erklaerung": "Das 'M' steht für Metrisches ISO-Gewinde (Regelgewinde) und die Zahl für den Nenndurchmesser (Außendurchmesser) in Millimeter."
+    },
+    {
+        "id": 7004,
+        "kategorie": "Gewinde",
+        "frage": "Wofür steht die Angabe 'M 16 x 1,5'?",
+        "optionen": ["16mm lang, 1,5mm Durchmesser", "Metrisches Feingewinde mit 16mm Nenndurchmesser und 1,5mm Steigung", "Ein Gewinde für Schraubenklasse 16 und Mutterklasse 1.5", "Gewindedurchmesser 16mm Toleranz 1,5"],
+        "antwort": 1,
+        "erklaerung": "Bei Feingewinden wird hinter dem Nenndurchmesser nach einem Multiplikationszeichen (x) zusätzlich die Steigung angegeben."
+    },
+
+
+
+
+    {
+        "id": 7005,
+        "kategorie": "Gewinde",
+        "frage": "Wie wird der Außendurchmesser eines Außengewindes in der Vorderansicht dargestellt?",
+        "optionen": [
+            "Mit breiter Volllinie",
+            "Mit schmaler Volllinie",
+            "Mit gestrichelter Linie",
+            "Mit Strich-Punkt-Linie"
+        ],
+        "antwort": 0,
+        "erklaerung": "Der Außendurchmesser (Nenndurchmesser) eines Außengewindes wird mit breiter Volllinie gezeichnet."
+    },
+    {
+        "id": 7006,
+        "kategorie": "Gewinde",
+        "frage": "Welche Linie stellt den Kerndurchmesser eines Außengewindes in der Vorderansicht dar?",
+        "optionen": [
+            "Gestrichelte Linie",
+            "Schmale Volllinie",
+            "Breite Volllinie",
+            "Strich-Punkt-Linie"
+        ],
+        "antwort": 1,
+        "erklaerung": "Der Kern- bzw. Flankendurchmesser wird in der Vorderansicht mit schmaler Volllinie dargestellt."
+    },
+    {
+        "id": 7007,
+        "kategorie": "Gewinde",
+        "frage": "Wie wird ein verdecktes Innengewinde dargestellt?",
+        "optionen": [
+            "Mit breiter Volllinie",
+            "Mit schmaler Volllinie",
+            "Mit schmaler Strichlinie",
+            "Mit breiter Strich-Punkt-Linie"
+        ],
+        "antwort": 2,
+        "erklaerung": "Verdeckte Innengewinde werden mit schmaler Strichlinie dargestellt."
+    },
+    {
+        "id": 7008,
+        "kategorie": "Gewinde",
+        "frage": "Wie wird der Gewindeauslauf nach ÖNORM EN ISO 225 dargestellt?",
+        "optionen": [
+            "Als waagrechte schmale Volllinie",
+            "Als schmale Strichlinie",
+            "Als schräge schmale Volllinie",
+            "Als gestrichelte Linie"
+        ],
+        "antwort": 3,
+        "erklaerung": "Der Auslauf wird als schräg verlaufende schmale Volllinie dargestellt."
+    },
+    {
+        "id": 7009,
+        "kategorie": "Gewinde",
+        "frage": "Bis zu welchem Durchmesser wird ein Außengewinde im Schnitt schraffiert?",
+        "optionen": [
+            "Bis zum Kerndurchmesser",
+            "Gar nicht",
+            "Bis zum Gewindeaußendurchmesser",
+            "Nur zur Hälfte"
+        ],
+        "antwort": 2,
+        "erklaerung": "Außengewinde werden im Schnitt bis zum Außendurchmesser schraffiert."
+    },
+    {
+        "id": 7010,
+        "kategorie": "Gewinde",
+        "frage": "Was bedeutet die Gewindebezeichnung M12 × 1,5 LH?",
+        "optionen": [
+            "Rechtsgewinde, 12 mm Steigung",
+            "Linksgewinde, Steigung 1,5 mm",
+            "Linksgewinde, Nenndurchmesser 12 mm",
+            "Sondergewinde ohne Drehsinn"
+        ],
+        "antwort": 1,
+        "erklaerung": "LH bedeutet Linksgewinde, 1,5 gibt die Steigung an."
+    },
+    {
+        "id": 7011,
+        "kategorie": "Gewinde",
+        "frage": "Wie wird ein Innengewinde im Schnitt dargestellt?",
+        "optionen": [
+            "Bis zum Außendurchmesser schraffiert",
+            "Gar nicht schraffiert",
+            "Bis zum Kerndurchmesser schraffiert",
+            "Mit dicker Strichpunkte-Linie"
+        ],
+        "antwort": 2,
+        "erklaerung": "Innengewinde werden im Schnitt bis zum Kerndurchmesser schraffiert."
+    },
+    {
+        "id": 7012,
+        "kategorie": "Gewinde",
+        "frage": "Welche Vereinfachung gilt nach ÖNORM EN ISO 6410‑3 für Gewinde kleiner als 5 mm?",
+        "optionen": [
+            "Nur die Steigung muss angegeben werden",
+            "Die Darstellung darf stark vereinfacht werden",
+            "Es müssen Freistiche eingezeichnet werden",
+            "Gewinde dürfen nicht dargestellt werden"
+        ],
+        "antwort": 1,
+        "erklaerung": "Gewinde bis 5 mm Nenndurchmesser dürfen stark vereinfacht dargestellt werden (z. B. nur einzelne Linien)."
+    },
+    {
+        "id": 7013,
+        "kategorie": "Gewinde",
+        "frage": "Wie müssen Gewindefreistiche nach ÖNORM M 1802 dargestellt werden?",
+        "optionen": [
+            "Als einfache gestrichelte Linie",
+            "Als kreisförmige Nut",
+            "Mit abgeschrägter oder zylindrischer Form und maßabhängigen Normwerten",
+            "Gar nicht, Freistiche dürfen nicht eingezeichnet werden"
+        ],
+        "antwort": 2,
+        "erklaerung": "Freistiche sind genormt und müssen als abgeschrägte oder zylindrische Zone dargestellt werden."
+    },
+    {
+        "id": 7014,
+        "kategorie": "Gewinde",
+        "frage": "Wie werden verschraubte Gewinde im Schnitt korrekt dargestellt?",
+        "optionen": [
+            "Beide Gewinde vollständig sichtbar",
+            "Das Innengewinde überdeckt das Außengewinde",
+            "Das Außengewinde überdeckt das Innengewinde",
+            "Keine Überdeckung – beide getrennt dargestellt"
+        ],
+        "antwort": 2,
+        "erklaerung": "Regel: Außengewinde überdeckt Innengewinde, der überdeckte Teil wird nicht gezeigt."
+    }
+
+
+
+
+
+
+
+
 ];

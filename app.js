@@ -2,7 +2,13 @@ class TechZeichnerApp {
     constructor() {
         this.mainContent = document.getElementById('main-content');
         this.navBtns = document.querySelectorAll('.nav-btn');
+        this.themeToggleBtn = document.getElementById('theme-toggle');
         this.currentView = 'home';
+        this.themes = ['dark', 'light', 'modern'];
+        
+        // Load Theme
+        this.currentTheme = localStorage.getItem('tz_theme') || 'dark';
+        this.applyTheme(this.currentTheme);
 
         // Persistent State
         this.stats = this.loadStats();
@@ -23,6 +29,11 @@ class TechZeichnerApp {
     }
 
     async init() {
+        // Setup Theme Toggle
+        if (this.themeToggleBtn) {
+            this.themeToggleBtn.addEventListener('click', () => this.toggleTheme());
+        }
+
         // Setup Navigation
         this.navBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -74,6 +85,31 @@ class TechZeichnerApp {
         localStorage.setItem('tz_stats', JSON.stringify(this.stats));
     }
 
+    toggleTheme() {
+        let currentIndex = this.themes.indexOf(this.currentTheme);
+        currentIndex = (currentIndex + 1) % this.themes.length;
+        this.applyTheme(this.themes[currentIndex]);
+    }
+
+    applyTheme(theme) {
+        this.currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('tz_theme', theme);
+        
+        // Update theme color meta tag based on theme
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+            if (theme === 'dark') metaThemeColor.setAttribute('content', '#0f172a');
+            else if (theme === 'light') metaThemeColor.setAttribute('content', '#e2e8f0');
+            else if (theme === 'modern') metaThemeColor.setAttribute('content', '#05000a');
+        }
+        
+        // Update toggle button icon
+        if (this.themeToggleBtn) {
+            const icons = { 'dark': '🌙', 'light': '☀️', 'modern': '✨' };
+            this.themeToggleBtn.textContent = icons[theme] || '🌙';
+        }
+    }
 
     navigateTo(viewId) {
         if (this.currentView === viewId) return;

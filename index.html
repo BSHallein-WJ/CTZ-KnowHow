@@ -14,6 +14,11 @@
 <body>
     <div class="app-container">
 
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="nav-btn-circle theme-toggle-btn" title="Theme wechseln">
+            🌙
+        </button>
+
         <!-- Main Content -->
         <main id="main-content" class="content-area">
             <!-- Content will be rendered here via JS -->
@@ -128,6 +133,16 @@
                     <h3>Projektionen</h3>
                     <p>Wissen testen</p>
                 </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('Schnitte')">
+                    <div class="module-icon">✂️</div>
+                    <h3>Schnitte</h3>
+                    <p>Wissen testen</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startQuiz('Gewinde')">
+                    <div class="module-icon">🔩</div>
+                    <h3>Gewinde</h3>
+                    <p>Wissen testen</p>
+                </div>
                 <div class="module-card glass-card all-topics-card" onclick="app.startQuiz('all')">
                     <div class="module-icon">🔀</div>
                     <h3>Alle Themen</h3>
@@ -200,6 +215,16 @@
                 <div class="module-card glass-card" onclick="app.startLearning('Projektionen')">
                     <div class="module-icon">📦</div>
                     <h3>Projektionen</h3>
+                    <p>Lernen</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startLearning('Schnitte')">
+                    <div class="module-icon">✂️</div>
+                    <h3>Schnitte</h3>
+                    <p>Lernen</p>
+                </div>
+                <div class="module-card glass-card" onclick="app.startLearning('Gewinde')">
+                    <div class="module-icon">🔩</div>
+                    <h3>Gewinde</h3>
                     <p>Lernen</p>
                 </div>
                 <div class="module-card glass-card all-topics-card" onclick="app.startLearning('all')">
