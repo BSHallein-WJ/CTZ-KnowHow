@@ -4,7 +4,7 @@ class TechZeichnerApp {
         this.navBtns = document.querySelectorAll('.nav-btn');
         this.themeToggleBtn = document.getElementById('theme-toggle');
         this.currentView = 'home';
-        this.themes = ['dark', 'light', 'modern'];
+        this.themes = ['dark', 'light', 'modern', 'ocean', 'forest', 'cyber'];
         
         // Load Theme
         this.currentTheme = localStorage.getItem('tz_theme') || 'dark';
@@ -38,7 +38,9 @@ class TechZeichnerApp {
         this.navBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const target = e.currentTarget.dataset.target;
-                this.navigateTo(target);
+                if (target) {
+                    this.navigateTo(target);
+                }
             });
         });
 
@@ -99,15 +101,29 @@ class TechZeichnerApp {
         // Update theme color meta tag based on theme
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
-            if (theme === 'dark') metaThemeColor.setAttribute('content', '#0f172a');
-            else if (theme === 'light') metaThemeColor.setAttribute('content', '#e2e8f0');
-            else if (theme === 'modern') metaThemeColor.setAttribute('content', '#05000a');
+            const colors = {
+                'dark': '#0f172a',
+                'light': '#e2e8f0',
+                'modern': '#05000a',
+                'ocean': '#051122',
+                'forest': '#04140d',
+                'cyber': '#0a0214'
+            };
+            metaThemeColor.setAttribute('content', colors[theme] || '#0f172a');
         }
         
         // Update toggle button icon
-        if (this.themeToggleBtn) {
-            const icons = { 'dark': '🌙', 'light': '☀️', 'modern': '✨' };
-            this.themeToggleBtn.textContent = icons[theme] || '🌙';
+        const themeIcon = document.getElementById('theme-icon');
+        if (themeIcon) {
+            const icons = { 
+                'dark': '🌙', 
+                'light': '☀️', 
+                'modern': '✨',
+                'ocean': '🌊',
+                'forest': '🌲',
+                'cyber': '🚀'
+            };
+            themeIcon.textContent = icons[theme] || '🌙';
         }
     }
 

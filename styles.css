@@ -52,6 +52,60 @@
     --card-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
 }
 
+[data-theme="ocean"] {
+    --bg-dark: #0c1e35;
+    --bg-darker: #051122;
+    --accent-blue: #06b6d4;
+    --accent-blue-hover: #0891b2;
+    --accent-gradient: linear-gradient(135deg, #06b6d4, #22d3ee);
+    --text-main: #f0f9ff;
+    --text-muted: #7dd3fc;
+    --glass-bg: rgba(6, 182, 212, 0.05);
+    --glass-border: rgba(6, 182, 212, 0.2);
+    --glass-highlight: rgba(6, 182, 212, 0.1);
+    --success: #10b981;
+    --error: #ef4444;
+    --bg-radial-1: rgba(6, 182, 212, 0.2);
+    --bg-radial-2: rgba(30, 58, 138, 0.2);
+    --card-shadow: 0 8px 32px rgba(6, 182, 212, 0.2);
+}
+
+[data-theme="forest"] {
+    --bg-dark: #062016;
+    --bg-darker: #04140d;
+    --accent-blue: #10b981;
+    --accent-blue-hover: #059669;
+    --accent-gradient: linear-gradient(135deg, #10b981, #34d399);
+    --text-main: #f0fdf4;
+    --text-muted: #86efac;
+    --glass-bg: rgba(16, 185, 129, 0.05);
+    --glass-border: rgba(16, 185, 129, 0.2);
+    --glass-highlight: rgba(16, 185, 129, 0.1);
+    --success: #10b981;
+    --error: #ef4444;
+    --bg-radial-1: rgba(16, 185, 129, 0.2);
+    --bg-radial-2: rgba(20, 83, 45, 0.2);
+    --card-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
+}
+
+[data-theme="cyber"] {
+    --bg-dark: #120422;
+    --bg-darker: #0a0214;
+    --accent-blue: #f43f5e;
+    --accent-blue-hover: #e11d48;
+    --accent-gradient: linear-gradient(135deg, #f43f5e, #8b5cf6);
+    --text-main: #fff1f2;
+    --text-muted: #fda4af;
+    --glass-bg: rgba(244, 63, 94, 0.05);
+    --glass-border: rgba(244, 63, 94, 0.3);
+    --glass-highlight: rgba(139, 92, 246, 0.15);
+    --success: #22c55e;
+    --error: #f43f5e;
+    --bg-radial-1: rgba(244, 63, 94, 0.15);
+    --bg-radial-2: rgba(139, 92, 246, 0.15);
+    --card-shadow: 0 8px 32px rgba(244, 63, 94, 0.3);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -120,7 +174,7 @@ body {
     overflow-y: auto;
     padding: 20px;
     padding-top: 85px; /* Space for top nav */
-    padding-bottom: 120px; /* Space for actions if any */
+    padding-bottom: 50px; 
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
 }
 
@@ -396,7 +450,7 @@ body {
     box-shadow: none;
 }
 
-/* Bottom Navigation */
+/* Top Navigation */
 .glass-nav {
     position: fixed;
     top: 0;
@@ -404,13 +458,12 @@ body {
     transform: translateX(-50%);
     width: 100%;
     max-width: 800px;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0 10px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px 0;
     border-bottom: 1px solid var(--glass-border);
-    border-top: none;
     border-radius: 0 0 20px 20px;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-btn {
