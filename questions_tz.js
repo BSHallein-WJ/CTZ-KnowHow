@@ -46,7 +46,7 @@ const externalQuestions = [
         "frage": "Wie breit ist der Zeichenblattrand an der Heftrandseite bei allen Formaten?",
         "optionen": ["5 mm", "10 mm", "20 mm", "25 mm"],
         "antwort": 2,
-        "erklaerung": "Der Heftrand ist normgerecht 20 mm breit, um Platz für die Lochung zu lassen."
+        "erklaerung": "Der Heftrand ist normgerecht 20 mm breit, um Platz für die Lochung zu lassen.An den anderen 3 Seiten beträgt der Rand nur 5 mm."
     },
     {
         "id": 1007,
@@ -76,10 +76,10 @@ const externalQuestions = [
     {
         "id": 1015,
         "kategorie": "Blattformate",
-        "frage": "Wie groß ist der Heftrand bei allen Zeichenblattformaten?",
+        "frage": "Wie breit ist das Schriftfeld bei allen Zeichenblattformaten?",
         "optionen": ["10 mm", "15 mm", "20 mm", "25 mm"],
         "antwort": 2,
-        "erklaerung": "Der Zeichenblattrand ist an der Heftrandseite 20 mm, an den anderen 3 Seiten nur 5 mm."
+        "erklaerung": "Das Schriftfeld ist 185 mm breit. (Mit den 5 mm Rand sind es 190 mm = Knickkante für das A3 Blatt)"
     },
     {
         "id": 1016,
